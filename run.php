@@ -1,13 +1,13 @@
 <?php
     require 'AuthenticationUtil.php';
 
-    //php run1.php 1803 676F47B42F2819102E7A a9A63Af80b9D47+8ae84a3929776ba/9479fCE46 adspace
+    //php run.php 1803 676F47B42F2819102E7A a9A63Af80b9D47+8ae84a3929776ba/9479fCE46 adspace
     define('APP_URL', 'https://advertiser.api.zanox.com/advertiser-api/2015-03-01');
     define('BASE_REST_APP', '/report/program/');
     define('ARGUMENTS_NUMBER', '5');
 
     if (sizeof($argv) != ARGUMENTS_NUMBER) {
-        echo 'Wrong number of arguments. Correct usage: run1.php PROGRAM_ID CONNECT_ID SECRET_KEY GROUP_BY';
+        echo 'Wrong number of arguments. Correct usage: run.php PROGRAM_ID CONNECT_ID SECRET_KEY GROUP_BY';
         exit;
     }
 
