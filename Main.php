@@ -37,12 +37,6 @@
        $nonce = $c->getNonce();
        $timestamp = gmdate('D, d M Y H:i:s T');
        $sign = $c->getSignature('GET', '/report/program/', $nonce, $timestamp);
-
-
-	/*$parameter = array('foo'=>'bar',
-              'baz'=>'boom',
-              'cow'=>'milch',
-              'php'=>'hypertext processor');*/
 	
          $parameter = array(
               'groupby'=>'adspace',
@@ -69,7 +63,8 @@
         $ch = curl_init();
 
         // set url
-        curl_setopt($ch, CURLOPT_URL, $app_url . '/' . $programId . $parameter_query);
+        curl_setopt($ch, CURLOPT_URL, $app_url . '/' . $programId . '?'. $parameter_query);
+	//echo $app_url . '/' . $programId . '?'. $parameter_query;
 
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
