@@ -1,7 +1,6 @@
 <?php
         require 'RestClient.php';
 
-
         define('APP_URL', 'https://advertiser.api.zanox.com/advertiser-api/2015-03-01');
         define('BASE_REST_APP', '/report/program/');
         define('ARGUMENTS_NUMBER', '6');
@@ -33,19 +32,10 @@
         $d = strtotime("yesterday");
         $todate = date("Y-m-d", $d);
 
-       $c = new RestClient();
+       // create curl resource
+       $ch = curl_init();
 
-       $c->setConnectId($connectId);
-       $c->setSecretKey($secretKey);
-
-       $nonce = $c->getNonce();
-       $timestamp = gmdate('D, d M Y H:i:s T');
-       $sign = $c->getSignature('GET', '/report/program/' . $programId, $nonce, $timestamp);
-	
-      // create curl resource
-      $ch = curl_init();
-
-      $parameter = array(
+       $parameter = array(
            'groupby'=>$groupBy,
            'fromdate'=>$fromdate,
            'todate'=>$todate,
@@ -54,13 +44,12 @@
            'nonce'=>$nonce,
            'signature'=>$sign);
 
-      $parameterQuery = http_build_query($parameter);
+       $parameterQuery = http_build_query($parameter);
 
-      // set url
-      $url = APP_URL . BASE_REST_APP . $programId . '?' . $parameterQuery;
-      echo $url;
-      curl_setopt($ch, CURLOPT_URL, $url);
-
+       // set url
+       $url = APP_URL . BASE_REST_APP . $programId . '?' . $parameterQuery;
+       echo $url;
+       curl_setopt($ch, CURLOPT_URL, $url);
 
        //return the transfer as a string
        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
