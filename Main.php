@@ -3,25 +3,6 @@
      
 	//java -jar target/advertiser-api-client-1.0-SNAPSHOT.jar --url 1803 676F47B42F2819102E7A a9A63Af80b9D47+8ae84a3929776ba/9479fCE46 adspace
 
-	/*
-        // create curl resource
-        $ch = curl_init();
-
-        // set url
-        curl_setopt($ch, CURLOPT_URL, "https://api.zanox.com/json/2011-03-01/products?connectid=43EEF0445509C7205827&items=5&q=nike");
-
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        // $output contains the output string
-        $output = curl_exec($ch);
-
-        //echo $output;
-        // close curl resource to free up system resources
-        curl_close($ch);     */
-
-
-
       $app_url = 'https://advertiser.api.zanox.com/advertiser-api/2015-03-01';
 
 	//generate authorization:
@@ -49,9 +30,7 @@
 
 
  	if ( is_array($parameter) ) {
-          // private static String auth = "&connectid={0}&date={1}&nonce={2}&signature={3}";
-          $parameter_query = http_build_query($parameter); // foo=bar&baz=boom&cow=milch&php=hypertext+processor
-          //echo $parameter_query;
+          $parameter_query = http_build_query($parameter); 
 	}
 
 
@@ -64,7 +43,6 @@
 
         // set url
         curl_setopt($ch, CURLOPT_URL, $app_url . '/report/program/' . $programId . '?'. $parameter_query);
-	//echo $app_url . '/' . $programId . '?'. $parameter_query;
 
         //return the transfer as a string
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -73,7 +51,6 @@
         $output = curl_exec($ch);
 
 	 curl_close($ch);  
-	echo 'cos';
 	echo $output;
 
 
