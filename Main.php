@@ -1,6 +1,7 @@
 <?php
         require 'RestClient.php';
 
+
         define('APP_URL', 'https://advertiser.api.zanox.com/advertiser-api/2015-03-01');
         define('BASE_REST_APP', '/report/program/');
         define('ARGUMENTS_NUMBER', '6');
@@ -22,8 +23,8 @@
         }
 
         $c = new RestClient();
-//        $c->setConnectId($connectId);
-//        $c->setSecretKey($secretKey);
+        $c->setConnectId($connectId);
+        $c->setSecretKey($secretKey);
         $nonce = $c->getNonce();
         $timestamp = gmdate('D, d M Y H:i:s T');
         $sign = $c->getSignature('GET', '/report/program/' . $programId, $nonce, $timestamp);
@@ -32,38 +33,47 @@
         $d = strtotime("yesterday");
         $todate = date("Y-m-d", $d);
 
-        $ch = curl_init();
+       $c = new RestClient();
 
-        $parameter = array(
+       $c->setConnectId($connectId);
+       $c->setSecretKey($secretKey);
+
+       $nonce = $c->getNonce();
+       $timestamp = gmdate('D, d M Y H:i:s T');
+       $sign = $c->getSignature('GET', '/report/program/' . $programId, $nonce, $timestamp);
+	
+      // create curl resource
+      $ch = curl_init();
+
+      $parameter = array(
            'groupby'=>$groupBy,
-           'fromdate'=>'2015-03-01',
+           'fromdate'=>$fromdate,
            'todate'=>$todate,
            'connectid'=>$connectId,
            'date'=>$timestamp,
            'nonce'=>$nonce,
            'signature'=>$sign);
 
-        if ( is_array($parameter) ) {
-            $parameterQuery = http_build_query($parameter);
-        }
+      $parameterQuery = http_build_query($parameter);
 
-        // set url
-        $url = APP_URL . BASE_REST_APP . $programId . '?' . $parameterQuery;
-        echo $url;
-        curl_setopt($ch, CURLOPT_URL, $url);
+      // set url
+      $url = APP_URL . BASE_REST_APP . $programId . '?' . $parameterQuery;
+      echo $url;
+      curl_setopt($ch, CURLOPT_URL, $url);
 
-        //return the transfer as a string
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        // $output contains the output string
-        $output = curl_exec($ch);
+       //return the transfer as a string
+       curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        echo $output;
+       // $output contains the output string
+       $output = curl_exec($ch);
 
-        // close curl resource to free up system resources
-        curl_close($ch);
+       echo $output;
 
-        function isGroupByValid($groupBy) {
+       // close curl resource to free up system resources
+       curl_close($ch);
+
+       function isGroupByValid($groupBy) {
             $validGroupByArray = array('day', 'month', 'adspace', 'admedium', 'adspace,admedium', 'admedium,adspace');
             if (in_array($groupBy, $validGroupByArray)) {
                 return true;
