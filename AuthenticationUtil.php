@@ -11,7 +11,7 @@ class AuthenticationUtil {
     /**
     * zanox shared secret key
     *
-    * @var string $secrectKey secret key to sign messages
+    * @var string $secretKey secret key to sign messages
     * @access private
     */
     private $secretKey = '';
@@ -84,6 +84,7 @@ class AuthenticationUtil {
     * @param string $service service name or restful action
     * @param string $method method or uri
     * @param string $nonce nonce of request
+    * @param string $timestamp for authentication
     *
     * @access public
     * @final
@@ -112,7 +113,7 @@ class AuthenticationUtil {
     * message. Make sure you have at least one of the options working on your
     * system.
     *
-    * @param string $message message to sign
+    * @param string $mesgparams message to sign
     *
     * @access private
     *
