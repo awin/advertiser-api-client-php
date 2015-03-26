@@ -1,5 +1,67 @@
 <?php
         class RestClient {
+
+	 /**
+	* zanox connect ID
+	*
+	* @var string $connectId zanox connect id
+	*
+	* @access private
+	*/
+	private $connectId = '';
+	/**
+	* zanox shared secret key
+	*
+	* @var string $secrectKey secret key to sign messages
+	* @access private
+	*/
+	private $secretKey = '';
+
+
+/**
+* Set the connectId
+*
+* @param string $connectId zanox connectId
+*
+* @access public
+* @final
+*
+* @return void
+*/
+final public function setConnectId( $connectId )
+{
+$this->connectId = $connectId;
+}
+/**
+* Returns the connectId
+*
+* @access public
+* @final
+*
+* @return string zanox connect id
+*/
+final public function getConnectId()
+{
+return $this->connectId;
+}
+
+/**
+* Set SecretKey
+*
+* @param string $secretKey zanox secret key
+*
+* @access public
+* @final
+*
+* @return void
+*/
+final public function setSecretKey( $secretKey )
+{
+$this->secretKey = $secretKey;
+}
+
+
+
         /**
 	* Returns hash based nonce.
 	*
@@ -33,9 +95,9 @@
 	*
 	* @return string encoded string
 	*/
-	final public function getSignature( $service, $method, $nonce )
+	final public function getSignature( $service, $method, $nonce, $timestamp )
 	 {
-	   $sign = $service . strtolower($method) . $this->timestamp;
+	   $sign = $service . strtolower($method) . $timestamp;
 	   if ( !empty($nonce) )
 	    {
 	     $sign .= $nonce;
@@ -79,7 +141,26 @@
         }
 
 
+ 	/**
+	* Encodes the given message parameters with Base64.
+	*
+	* @param string $str string to encode
+	*
+	* @access private
+	*
+	* @return encoded string
+	*/
+	private function encodeBase64( $str )
+	 {
+	  $encode = '';
+	  for ($i=0; $i < strlen($str); $i+=2){
+	    $encode .= chr(hexdec(substr($str, $i, 2)));
+	  }
+	  return base64_encode($encode);
+	 }
 
-        }//end RestClient
+
+
+        }//end class
 
 ?>
