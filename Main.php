@@ -17,7 +17,7 @@
 
        $nonce = $c->getNonce();
        $timestamp = gmdate('D, d M Y H:i:s T');
-       $sign = $c->getSignature('GET', '/report/program/', $nonce, $timestamp);
+       $sign = $c->getSignature('GET', '/report/program/' . $programId, $nonce, $timestamp);
 	
          $parameter = array(
               'groupby'=>'adspace',
@@ -34,9 +34,9 @@
 	}
 
 
-       //echo $nonce;
-       //echo $timestamp;
-       //echo $sign;
+       echo $nonce;
+       echo $timestamp;
+       echo $sign;
 
       // create curl resource
         $ch = curl_init();
