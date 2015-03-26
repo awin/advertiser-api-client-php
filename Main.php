@@ -63,7 +63,7 @@
         $ch = curl_init();
 
         // set url
-        curl_setopt($ch, CURLOPT_URL, $app_url . '/' . $programId . '?'. $parameter_query);
+        curl_setopt($ch, CURLOPT_URL, $app_url . '/report/program/' . $programId . '?'. $parameter_query);
 	//echo $app_url . '/' . $programId . '?'. $parameter_query;
 
         //return the transfer as a string
@@ -72,6 +72,7 @@
         // $output contains the output string
         $output = curl_exec($ch);
 
+	 curl_close($ch);  
 	echo 'cos';
 	echo $output;
 
