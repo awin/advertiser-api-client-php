@@ -1,7 +1,6 @@
 <?php
     require './src/AuthenticationUtil.php';
 
-    //php run.php 1803 676F47B42F2819102E7A a9A63Af80b9D47+8ae84a3929776ba/9479fCE46 adspace
     define('APP_URL', 'https://advertiser.api.zanox.com/advertiser-api/2015-03-01');
     define('BASE_REST_APP', '/report/program/');
     define('ARGUMENTS_NUMBER', '5');
