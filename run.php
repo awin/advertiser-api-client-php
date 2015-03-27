@@ -17,7 +17,7 @@
 
     if (!isGroupByValid($groupBy)) {
         $groupBy = 'day';
-        echo "Group by parameter invalid, default group by: day will be used. \n";
+        error_log("Group by parameter invalid, default group by: day will be used. \n");
     }
 
     $c = new Zanox\AdvertiserApi\AuthenticationUtil();
@@ -33,13 +33,13 @@
     $todate = date("Y-m-d", $d);
 
     $parameter = array(
-        'groupby'=>$groupBy,
-        'fromdate'=>$fromdate,
-        'todate'=>$todate,
-        'connectid'=>$connectId,
-        'date'=>$timestamp,
-        'nonce'=>$nonce,
-        'signature'=>$sign);
+        'groupby' => $groupBy,
+        'fromdate' => $fromdate,
+        'todate' => $todate,
+        'connectid' => $connectId,
+        'date' => $timestamp,
+        'nonce' => $nonce,
+        'signature' => $sign);
 
     $parameterQuery = http_build_query($parameter);
 
