@@ -1,5 +1,5 @@
 <?php
-namespace Zanox\Util;
+namespace Zanox\AdvertiserApi;
 
 class AuthenticationUtil
 {
