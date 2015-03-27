@@ -20,7 +20,7 @@
         echo "Group by parameter invalid, default group by: day will be used. \n";
     }
 
-    $c = new AuthenticationUtil();
+    $c = new Zanox\Util\AuthenticationUtil();
     $c->setConnectId($connectId);
     $c->setSecretKey($secretKey);
     $nonce = $c->getNonce();
