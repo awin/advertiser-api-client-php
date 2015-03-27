@@ -132,4 +132,3 @@ class AuthenticationUtil
         return base64_encode($encode);
     }
 }
-?>
