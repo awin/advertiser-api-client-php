@@ -7,7 +7,8 @@
     define('ARGUMENTS_NUMBER', '5');
 
     if (sizeof($argv) != ARGUMENTS_NUMBER) {
-        exit('Wrong number of arguments. Correct usage: run.php PROGRAM_ID CONNECT_ID SECRET_KEY GROUP_BY');
+        error_log('Wrong number of arguments. Correct usage: run.php PROGRAM_ID CONNECT_ID SECRET_KEY GROUP_BY');
+        exit(1);
     }
 
     $programId = $argv[1];

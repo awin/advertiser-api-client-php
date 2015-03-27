@@ -31,8 +31,6 @@ class AuthenticationUtil
     * Set the connectId
     *
     * @param string $connectId zanox connectId
-    *
-    * @return void
     */
     final public function setConnectId($connectId)
     {
@@ -45,8 +43,6 @@ class AuthenticationUtil
     * @param string $secretKey zanox secret key
     *
     * @access public
-    *
-    * @return void
     */
     final public function setSecretKey($secretKey)
     {
