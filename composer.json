@@ -1,0 +1,13 @@
+{
+  "name": "zanox/advertiser-api-client-php",
+
+  "version": "1.0.0",
+
+  "license": "proprietary",
+
+  "autoload": {
+    "psr-4": {
+      "Zanox\\AdvertiserApi\\": "src/"
+    }
+  }
+}
