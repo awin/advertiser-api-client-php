@@ -82,9 +82,7 @@ class AuthenticationUtil
     final public function getSignature($service, $method, $nonce, $timestamp)
     {
         $sign = $service . strtolower($method) . $timestamp;
-        if (!empty($nonce)) {
-            $sign .= $nonce;
-        }
+        $sign .= $nonce;
         $hmac = $this->hmac($sign);
         if ($hmac) {
             return $hmac;
