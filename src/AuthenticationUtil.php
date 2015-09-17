@@ -90,11 +90,7 @@ class AuthenticationUtil
 
     /**
      * Creates secured HMAC signature of the message parameters.
-     *
-     * Uses the hash_hmac function if available (PHP needs to be >= 5.1.2).
-     * Otherwise it uses the PEAR/CRYP_HMAC library to sign and crypt the
-     * message. Make sure you have at least one of the options working on your
-     * system.
+     * Uses the hash_hmac function to sign and crypt the message.
      *
      * @param string $mesgparams message to sign
      * @return string signed sha1 message hash
